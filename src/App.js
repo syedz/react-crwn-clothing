@@ -61,6 +61,13 @@ class App extends React.Component {
   }
 }
 
+/** 
+  createStructuredSelector() automatically passes in top level state instead of doing:
+  const mapStateToProps = (state) => ({
+    currentUser: selectCurrentUser(state),
+  });
+ * */ 
+
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
