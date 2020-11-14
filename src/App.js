@@ -13,6 +13,7 @@ import Header from './components/header/header.component';
 // import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 // import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession } from './redux/user/user.actions';
 
 import './App.css';
 
@@ -36,6 +37,9 @@ class App extends React.Component {
 
     //   setCurrentUser(userAuth);
     // });
+
+    const { checkUserSession } = this.props;
+    checkUserSession();
   }
 
   componentWillUnmount() {
@@ -72,8 +76,12 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
 
-// const mapDispatchToProps = dispatch => ({
-//   setCurrentUser: user => dispatch(setCurrentUser(user))
-// });
+const mapDispatchToProps = dispatch => ({
+  // setCurrentUser: user => dispatch(setCurrentUser(user))
+  checkUserSession: user => dispatch(checkUserSession())
+});
 
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
