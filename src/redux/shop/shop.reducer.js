@@ -9,6 +9,7 @@ const INITIAL_STATE = {
 const shopReducers = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case ShopActionTypes.FETCH_COLLECTIONS_START:
+            console.log('FETCH_COLLECTIONS_START')
             return {
                 ...state,
                 isFetching: true,

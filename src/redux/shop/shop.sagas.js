@@ -14,6 +14,7 @@ export function* fetchCollectionsAsync() {
 
     try {
         const collectionRef = firestore.collection('collections');
+        console.log('fetchCollectionsAsync');
         const snapshot = yield collectionRef.get();
         // Yield the next call in case it takes longer than expected
         // Yield will allow us to defer control back to the saga middleware, in case it needs to cancel, we have this option.
