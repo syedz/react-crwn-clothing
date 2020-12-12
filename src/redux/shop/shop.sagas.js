@@ -16,10 +16,11 @@ export function* fetchCollectionsAsync() {
         const collectionRef = firestore.collection('collections');
         const snapshot = yield collectionRef.get();
         // Yield the next call in case it takes longer than expected
-        // Yield will allow us to defer control back to the saga middleware
+        // Yield will allow us to defer control back to the saga middleware, in case it needs to cancel, we have this option.
+        // This also makes it easier to test
         const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot);
 
-        // put() does the dispatching of the action
+        // put() is the saga effect for the dispatching of the action
         yield put(fetchCollectionsSuccess(collectionsMap));
     } catch (error) {
         yield put(fetchCollectionsFailure(error.message));
