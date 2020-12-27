@@ -51,6 +51,7 @@ class App extends React.Component {
       <div>
         <Header />
         <Switch>
+          {/* Only the top parent component (HomePage, ShopPage, etc) will get access to the history props, that's why we use withRouter */}
           <Route exact path='/' component={HomePage} />
           <Route path='/shop' component={ShopPage} />
           <Route exact path='/checkout' component={CheckoutPage} />
